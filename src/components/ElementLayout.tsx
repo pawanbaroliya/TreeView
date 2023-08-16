@@ -18,7 +18,6 @@ import IconButton from "@mui/material/IconButton";
 import ClearIcon from "@mui/icons-material/Clear";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { Option } from "../types";
 
 const ColumnLayout = ({ labelText }: { labelText: string }) => {
   const {
@@ -38,10 +37,6 @@ const ColumnLayout = ({ labelText }: { labelText: string }) => {
       value: string;
     }[]
   >([]);
-  const [parentElements, setParentElements] = useState<Option[]>();
-  console.log("parentElements: ", parentElements);
-  const [childElements, setChildElements] = useState<Option[]>();
-  console.log("childElements: ", childElements);
 
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -111,12 +106,6 @@ const ColumnLayout = ({ labelText }: { labelText: string }) => {
       elementState?.forEach((opt) => {
         options.push({ label: opt.label, value: opt.id });
       });
-      const parentElements = elementState.filter(
-        (element) => element?.isParent
-      );
-      const childElement = elementState.filter((element) => !element?.isParent);
-      setParentElements(parentElements);
-      setChildElements(childElement);
       setElementOptions(options);
     }
   }, [elementState]);
